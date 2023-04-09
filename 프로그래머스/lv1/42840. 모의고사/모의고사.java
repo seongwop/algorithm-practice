@@ -32,7 +32,7 @@ class Solution {
         // 최댓값을 받은 학생을 list에 add
         if (student1 == max) list.add(1);
         if (student2 == max) list.add(2);
-        if(student3 == max) list.add(3);
+        if (student3 == max) list.add(3);
             
         // ArrayList를 배열로 변환
         int[] answer = new int[list.size()];
