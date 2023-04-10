@@ -55,7 +55,7 @@ class Solution {
         
 //         replace 메서드를 사용한 답
         
-//          s=s.replace("zero","0");
+//         s=s.replace("zero","0");
 //         s=s.replace("one","1");    
 //         s=s.replace("two","2");
 //         s=s.replace("three","3");
