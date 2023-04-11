@@ -7,11 +7,9 @@ class Solution {
         
         // 당첨 숫자와 숫자 0 따로 카운트
         for (int i = 0; i < lottos.length; i++) {
-            if (lottos[i] == 0)
-                zeros++;
+            if (lottos[i] == 0) zeros++;
             for (int j = 0; j < win_nums.length; j++){
-                if (lottos[i] == win_nums[j])
-                    cnt++;
+                if (lottos[i] == win_nums[j]) cnt++;
             }
         }
 
