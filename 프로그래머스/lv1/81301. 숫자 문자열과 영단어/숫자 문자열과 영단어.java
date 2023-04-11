@@ -67,6 +67,6 @@ class Solution {
 //         s=s.replace("nine","9");
 
 //         result = Integer.parseInt(s);
-//         return answer;     
+//         return result;     
     }
 }
