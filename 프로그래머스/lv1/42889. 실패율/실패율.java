@@ -7,9 +7,10 @@ class Solution {
         int[] answer = new int[N];
         double[] failed = new double[N + 2];
         
+        // 스테이지 별 실패한 사용자 저장
         double people = stages.length;
         for (int s : stages) failed[s]++;
-        
+        // 스테이지 별 실패율을 스테이지 번호와 함께 객체로 저장
         for (int i = 1; i <= N; i++) {
             if (people == 0) {
                 stageList.add(new Stage(i, 0));
@@ -18,7 +19,7 @@ class Solution {
             stageList.add(new Stage(i, failed[i] / people));
             people -= failed[i];
         }
-
+        // 객체 정렬을 위한 compare 메서드 오버라이딩
         Collections.sort(stageList, new Comparator<Stage>() {
             @Override
             public int compare(Stage o1, Stage o2) {
@@ -29,15 +30,10 @@ class Solution {
         for (int i = 0; i < N; i++) {
             answer[i] = stageList.get(i).stageNum;
         }
-
         
+        return answer;
         
-        
-        
-        
-        
-        
-        
+//         2중 for문 + HashMap을 사용한 정답 (효율성이 안좋음)
         
 //         HashMap<Integer, Double> map = new HashMap<>();
 //         List<Integer> list = new ArrayList<>();
@@ -49,8 +45,11 @@ class Solution {
 //             for (int j = 0; j < stages.length; j++) {
 //                 if (stages[j] == i + 1) count++; 
 //             }
+//             if (len == 0) {
+//                 map.put(i + 1, 0.0);
+//                 continue;
+//             }
 //             map.put(i + 1, count / len);
-            
 //             len -= count;
 //             count = 0;
 //         }
@@ -62,7 +61,7 @@ class Solution {
 //             .mapToInt(entry -> entry.getKey())
 //             .toArray();
 
-        return answer;
+//         return answer;
     }
 }
 
