@@ -19,13 +19,16 @@ class Solution {
             stageList.add(new Stage(i, failed[i] / people));
             people -= failed[i];
         }
+        
+        Collections.sort(stageList, (Stage a, Stage b) -> Double.compare(b.failRate, a.failRate));
+        
         // 객체 정렬을 위한 compare 메서드 오버라이딩
-        Collections.sort(stageList, new Comparator<Stage>() {
-            @Override
-            public int compare(Stage o1, Stage o2) {
-                return Double.compare(o2.failRate, o1.failRate);
-            }
-        });
+        // Collections.sort(stageList, new Comparator<Stage>() {
+        //     @Override
+        //     public int compare(Stage o1, Stage o2) {
+        //         return Double.compare(o2.failRate, o1.failRate);
+        //     }
+        // });
         
         for (int i = 0; i < N; i++) {
             answer[i] = stageList.get(i).stageNum;
