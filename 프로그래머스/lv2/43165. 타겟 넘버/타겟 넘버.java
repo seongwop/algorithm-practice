@@ -16,7 +16,7 @@ class Solution {
             }
             return;
         }
-        
+        // 인덱스를 한 칸씩 더해가며 덧셈 or 뺄셈
         dfs(current + 1, sum + numbers[current], numbers, target);
         dfs(current + 1, sum - numbers[current], numbers, target);
     }
