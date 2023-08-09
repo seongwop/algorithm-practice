@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class Main {
-
     // 0: 위, 1: 우, 2: 아래 3: 좌
     static int[] dx = {-1, 0, 1, 0};
     static int[] dy = {0, 1, 0, -1};
@@ -17,7 +16,6 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         board = new char[N][M];
         Marvel start = new Marvel();
-
 
         for (int i = 0; i < N; i++) {
             String line = br.readLine();
@@ -35,8 +33,8 @@ public class Main {
             }
         }
         start.count = 0;
+        
         System.out.println(bfs(start));
-
     }
 
     static int bfs(Marvel start) {
@@ -101,7 +99,6 @@ public class Main {
                         else blueY++;
                     }
                 }
-
                 if (marvel.redX == redX && marvel.redY == redY && marvel.blueX == blueX && marvel.blueY == blueY) continue;
 
                 queue.offer(new Marvel(redX, redY, blueX, blueY, marvel.count + 1));
