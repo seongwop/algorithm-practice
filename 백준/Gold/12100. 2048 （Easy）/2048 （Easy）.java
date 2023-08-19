@@ -20,11 +20,11 @@ public class Main {
                 map[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        bfs(0, map);
+        dfs(0, map);
         System.out.println(answer);
     }
 
-    static void bfs(int count, int[][] map) {
+    static void dfs(int count, int[][] map) {
         if (count == 5) {
             for (int i = 0; i < N; i++) {
                 for (int j = 0; j < N; j++) {
@@ -39,7 +39,7 @@ public class Main {
         }
         for (int i = 0; i < 4; i++) {
             move(i);
-            bfs(count + 1, map);
+            dfs(count + 1, map);
             for (int j = 0; j < N; j++) {
                 map[j] = copy[j].clone();
             }
