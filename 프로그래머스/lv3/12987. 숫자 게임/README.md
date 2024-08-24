@@ -72,5 +72,4 @@ B 팀원들을 4번, 2번, 3번, 1번의 순서대로 출전시킬 경우 팀원
 <p>입출력 예 #2<br>
 B 팀원들을 어떤 순서로 출전시켜도 B팀의 승점은 0점입니다.</p>
 
-
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
