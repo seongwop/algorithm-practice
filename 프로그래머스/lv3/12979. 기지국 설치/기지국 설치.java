@@ -24,6 +24,7 @@ class Solution {
                 answer += (n - start + 1) / (w * 2 + 1) + 1;
             }
         }
+        
         return answer;
     }
 }

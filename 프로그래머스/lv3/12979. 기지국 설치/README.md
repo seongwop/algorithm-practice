@@ -99,5 +99,4 @@
 
 <p><img src="https://grepp-programmers.s3.ap-northeast-2.amazonaws.com/files/production/bc7d4fdb-cb48-4f45-b2eb-977cfb2c54dd/%E1%84%80%E1%85%B5%E1%84%8C%E1%85%B5%E1%84%80%E1%85%AE%E1%86%A8%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B55_zh4ebk.png" title="" alt="기지국설치5_zh4ebk.png"></p>
 
-
 > 출처: 프로그래머스 코딩 테스트 연습, https://school.programmers.co.kr/learn/challenges
