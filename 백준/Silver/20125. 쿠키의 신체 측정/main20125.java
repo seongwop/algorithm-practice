@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class main {
+public class main20125 {
 
     static int x = 0;
     static int y = 0;
