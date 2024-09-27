@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class main {
+public class main1927 {
     public static void main(String[] args) throws IOException{
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         PriorityQueue<Integer> pq = new PriorityQueue<>();
