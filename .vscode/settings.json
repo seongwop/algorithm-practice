@@ -2,6 +2,7 @@
     "java.project.sourcePaths": [
         "백준/Silver/1406. 에디터",
         "백준/Silver/1283. 단축키 지정",
+        "백준/Gold/9935. 문자열 폭발",
         "백준/Gold/7682. 틱택토",
         "백준/Gold/7490. 0 만들기",
         "백준/Gold/5972. 택배 배송",
@@ -18,6 +19,6 @@
         "백준/Gold/14719. 빗물",
         "백준/Gold/13549. 숨바꼭질 3",
         "백준/Gold/12919. A와 B 2",
-        "백준/Gold/9935. 문자열 폭발"
+        "백준/Gold/13144. List of Unique Numbers"
     ]
 }
