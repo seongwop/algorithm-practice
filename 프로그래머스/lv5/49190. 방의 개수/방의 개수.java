@@ -18,16 +18,17 @@ class Solution {
         for (int arrow : arrows) {
             for (int i = 0; i < 2; i++) {
                 String start = current[0] + "," + current[1];
-                current = new int[]{current[0] + move[arrow][0], current[1] + move[arrow][1]};
+                current[0] += move[arrow][0];
+                current[1] += move[arrow][1];
                 String next = current[0] + "," + current[1];
                 String forward = start + "->" + next;
                 String backward = next + "->" + start;
-                if (nodeSet.contains(next) && !edgeSet.contains(forward) && !edgeSet.contains(backward)) {
+                boolean isVisitedNode = !nodeSet.add(next);
+                boolean isNewEdge = edgeSet.add(forward);
+                if (isVisitedNode && isNewEdge) {
                     answer++;
                 }
-                nodeSet.add(next);
-                edgeSet.add(start + "->" + next);
-                edgeSet.add(next + "->" + start);
+                edgeSet.add(backward);
             }
         }
             
