@@ -21,11 +21,11 @@ class Solution {
                 result.add(i + 1);
             }
         }
-        int[] resultArr = new int[result.size()];
-        for (int i = 0; i < result.size(); i++) {
-            resultArr[i] = result.get(i);
-        }
-        return resultArr;
+        // int[] resultArr = new int[result.size()];
+        // for (int i = 0; i < result.size(); i++) {
+        //     resultArr[i] = result.get(i);
+        // }
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
     
     // 일 수로 환산 함수 
