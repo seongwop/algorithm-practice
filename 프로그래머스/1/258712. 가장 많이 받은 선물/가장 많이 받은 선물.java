@@ -13,38 +13,67 @@ class Solution {
             friendMap.put(friends[i], i);
         }
         int[][] giftArray = new int[friends.length][friends.length];
+        int[] giftPoint = new int[friends.length];
         for (String gift : gifts) {
             StringTokenizer st = new StringTokenizer(gift);
             String sGift = st.nextToken();
             String rGift = st.nextToken();
             giftArray[friendMap.get(sGift)][friendMap.get(rGift)]++;
-        }
-        int[] giftPoint = new int[friends.length];
-        for (int i = 0; i < friends.length; i++) {
-            int point = 0;
-            for (int j = 0; j < friends.length; j++) {
-                point += giftArray[i][j];
-            }
-            giftPoint[i] = point;
-        }
-        for (int i = 0; i < friends.length; i++) {
-            for (int j = 0; j < friends.length; j++) {
-                giftPoint[i] -= giftArray[j][i];   
-            }
+            giftPoint[friendMap.get(sGift)]++;
+            giftPoint[friendMap.get(rGift)]--;
         }
         
         int[] giftNum = new int[friends.length];
         for (int i = 0; i < friends.length; i++) {
-            for (int j = 0; j < friends.length; j++) {
+            for (int j = i + 1; j < friends.length; j++) {
                 if (giftArray[i][j] > giftArray[j][i]) {
                     giftNum[i]++;
-                } else if (giftArray[i][j] == giftArray[j][i]) {
+                } else if (giftArray[i][j] < giftArray[j][i]) {
+                    giftNum[j]++;
+                } else {
                     if (giftPoint[i] > giftPoint[j]) {
                         giftNum[i]++;
+                    } else if (giftPoint[j] > giftPoint[i]) {
+                        giftNum[j]++;
                     }
                 }
             }
         }
+        
+        
+//         int[][] giftArray = new int[friends.length][friends.length];
+//         for (String gift : gifts) {
+//             StringTokenizer st = new StringTokenizer(gift);
+//             String sGift = st.nextToken();
+//             String rGift = st.nextToken();
+//             giftArray[friendMap.get(sGift)][friendMap.get(rGift)]++;
+//         }
+//         int[] giftPoint = new int[friends.length];
+//         for (int i = 0; i < friends.length; i++) {
+//             int point = 0;
+//             for (int j = 0; j < friends.length; j++) {
+//                 point += giftArray[i][j];
+//             }
+//             giftPoint[i] = point;
+//         }
+//         for (int i = 0; i < friends.length; i++) {
+//             for (int j = 0; j < friends.length; j++) {
+//                 giftPoint[i] -= giftArray[j][i];   
+//             }
+//         }
+        
+//         int[] giftNum = new int[friends.length];
+//         for (int i = 0; i < friends.length; i++) {
+//             for (int j = 0; j < friends.length; j++) {
+//                 if (giftArray[i][j] > giftArray[j][i]) {
+//                     giftNum[i]++;
+//                 } else if (giftArray[i][j] == giftArray[j][i]) {
+//                     if (giftPoint[i] > giftPoint[j]) {
+//                         giftNum[i]++;
+//                     }
+//                 }
+//             }
+//         }
         for (int num : giftNum) {
             answer = Math.max(answer, num);
         }
