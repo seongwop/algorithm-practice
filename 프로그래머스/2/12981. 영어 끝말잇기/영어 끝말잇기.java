@@ -9,9 +9,11 @@ class Solution {
         for (int i = 1; i < words.length; i++) {
             if (wordSet.contains(words[i])
                || (words[i].charAt(0) != words[i - 1].charAt(words[i - 1].length() - 1))) {
-                int num = (i + 1) % n == 0 ? n : (i + 1) % n;
-                int order = (i + 1) % n == 0 ? (i + 1) / n : (i + 1) / n + 1;
-                return new int[]{num, order};
+                // int num = (i + 1) % n == 0 ? n : (i + 1) % n;
+                // int order = (i + 1) % n == 0 ? (i + 1) / n : (i + 1) / n + 1;
+                int player = i % n + 1;
+                int round = i / n + 1;
+                return new int[]{player, round};
             }
             wordSet.add(words[i]);
         }
