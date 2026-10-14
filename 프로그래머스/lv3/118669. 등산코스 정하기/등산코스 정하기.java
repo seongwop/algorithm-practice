@@ -15,9 +15,7 @@ class Solution {
         }
         
         int[] dist = new int[n + 1];
-        for (int i = 0; i < dist.length; i++) {
-            dist[i] = Integer.MAX_VALUE;
-        }
+        Arrays.fill(dist, Integer.MAX_VALUE);
         int[] loc = new int[n + 1];
         for (int gate : gates) {
             dist[gate] = 0;
@@ -54,14 +52,12 @@ class Solution {
         
         Arrays.sort(summits);
         int min = Integer.MAX_VALUE;
-        for (int summit : summits) {
-            min = Math.min(dist[summit], min);
-        }
         int summitNum = 0;
+            
         for (int summit : summits) {
-            if (dist[summit] == min) {
+            if (dist[summit] < min) {
                 summitNum = summit;
-                break;
+                min = dist[summit];
             }
         }
         return new int[]{summitNum, min};
