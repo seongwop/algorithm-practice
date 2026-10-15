@@ -1,38 +1,42 @@
-import java.util.*;
-
 class Solution {
     public String solution(String new_id) {
         String answer = "";
-
-        // 1단계
-        new_id = new_id.toLowerCase();
-        char[] chars = new_id.toCharArray();
-        List<Character> charList = new ArrayList<>();
-        
-        // 2단계 - ArrayList에 조건에 부합하는 Character 넣기
-        for (int i = 0; i < chars.length; i++) {
-            if ((chars[i] >= 48 && chars[i] <= 57) || (chars[i] >= 97 && chars[i] <= 122) || chars[i] == '-' || chars[i] == '_' || chars[i] == '.')
-                charList.add(chars[i]);
-        }
-        // 3단계 - '.' 이 연속된다면 하나 삭제하고 인덱스 1 감소
-        for (int i = 1; i < charList.size(); i++) {
-            if (charList.get(i) == '.' && charList.get(i - 1) == '.') {
-                charList.remove(i);
-                i--;
-            }
-        }
-        // 4단계
-        if (charList.get(0) == '.') charList.remove(0);
-        if (!charList.isEmpty() && charList.get(charList.size() - 1) == '.') charList.remove(charList.size() - 1);
-        // 5단계
-        if (charList.isEmpty()) charList.add('a');
-        // 6단계
-        for (int i = 0; i < charList.size(); i++) if (i > 14) charList.remove(i--);
-        if (charList.get(charList.size() - 1) == '.') charList.remove(charList.size() - 1);
-        // 7단계
-        if (charList.size() <= 2) while (charList.size() < 3) charList.add(charList.get(charList.size() - 1));
-        for (Character c : charList) answer += c;
-        
+        answer = parse(new_id);
         return answer;
     }
+    
+    String parse(String id) {
+        id = id.toLowerCase();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < id.length(); i++) {
+            char c = id.charAt(i);
+            if (!((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == '-' || c == '_' || c == '.')) continue;
+            sb.append(c);
+        }
+        StringBuilder sb2 = new StringBuilder();
+        for (int i = 0; i < sb.length(); i++) {
+            char c = sb.charAt(i);
+            if (!sb2.isEmpty() && sb2.charAt(sb2.length() - 1) == '.' && c == '.')
+                continue;
+            sb2.append(c);
+        }
+        if (!sb2.isEmpty() && sb2.charAt(0) == '.') sb2.deleteCharAt(0);
+        if (!sb2.isEmpty() && sb2.charAt(sb2.length() - 1) == '.') sb2.deleteCharAt(sb2.length() - 1);
+        if (sb2.isEmpty()) {
+            sb2 = new StringBuilder("a");
+        }
+        if (sb2.length() >= 16) {
+            sb2.setLength(15);
+            if (sb2.charAt(14) == '.') {
+                sb2.setLength(14);
+            }
+        }
+        if (!sb2.isEmpty() && sb2.length() <= 2) {
+            char last = sb2.charAt(sb2.length() - 1);
+            while (sb2.length() < 3) {
+                sb2.append(last);
+            }
+        }  
+        return sb2.toString();
+    } 
 }
