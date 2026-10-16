@@ -2,9 +2,9 @@ import java.util.*;
 
 class Solution {
     public String solution(String m, String[] musicinfos) {
-        String answer = "";
-        List<String[]> list = new ArrayList<>();
+        String answer = "(None)";
         // 재생 시간 동안 이어지는 악보를 생성하고 contains로 확인
+        int maxPeriod = -1;
         for (String info : musicinfos) {
             String[] infoArr = info.split(",");
             String[] startAt = infoArr[0].split(":");
@@ -14,21 +14,21 @@ class Solution {
             music = convert(music);
             int period = (Integer.parseInt(endAt[0]) * 60 + Integer.parseInt(endAt[1])) - (Integer.parseInt(startAt[0]) * 60 + Integer.parseInt(startAt[1]));
             // 재생 시간동안 완성된 악보 구하기
-            String fullMusic = "";
+            StringBuilder fullMusic = new StringBuilder();
+            
             for (int i = 0; i < period; i++) {
                 int curIdx = i % music.length();
-                fullMusic += music.charAt(curIdx);
+                fullMusic.append(music.charAt(curIdx));
             }
-            System.out.println(fullMusic);
-            if (fullMusic.contains(convert(m))) {
-                list.add(new String[]{String.valueOf(period), title});
+            
+            m = convert(m);
+            
+            if (fullMusic.toString().contains(m) && maxPeriod < period) {
+                maxPeriod = period;
+                answer = title;
             }
         }
-        if (list.isEmpty()) {
-            return "(None)";
-        }
-        list.sort((a, b) -> Integer.parseInt(b[0]) - Integer.parseInt(a[0]));
-        return list.get(0)[1];
+        return answer;
     }
     
     String convert(String music) {
