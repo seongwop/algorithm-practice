@@ -1,11 +1,14 @@
 import java.util.*;
 
 class Solution {
-    public static Set<Set<Integer>> visitedRoutes = new HashSet<>();
-    public static int maxSheep = 1;
+    public boolean[] visitedRoutes;
+    public int maxSheep;
     
     public int solution(int[] info, int[][] edges) {
         
+        // DFS + 메모이제이션 + 비트마스킹
+        maxSheep = 1;
+        visitedRoutes = new boolean[1 << info.length];
         List<List<Integer>> graph = new ArrayList<>();
         for (int i = 0; i < info.length; i++) {
             graph.add(new ArrayList<>());
@@ -14,25 +17,27 @@ class Solution {
         for (int[] edge : edges) {
             graph.get(edge[0]).add(edge[1]);
         }
-        dfs(info, graph, new HashSet<>(Arrays.asList(0)), 1, 0);
+        dfs(info, graph, 1, 1, 0);
         
         
         return maxSheep;
     }
     
-    void dfs(int[] info, List<List<Integer>> graph, Set<Integer> visitedNode, int sheep, int wolf) {
-        if (visitedRoutes.contains(visitedNode)) {
+    void dfs(int[] info, List<List<Integer>> graph, int visitedNode, int sheep, int wolf) {
+        if (visitedRoutes[visitedNode]) {
             return;
         }
         
-        visitedRoutes.add(visitedNode);
-        for (int visited : visitedNode) {
+        visitedRoutes[visitedNode] = true;
+        for (int visited = 0; visited < info.length; visited++) {
+            if ((visitedNode & (1 << visited)) == 0) {
+                continue;
+            }
             for (int nextNode : graph.get(visited)) {
                 // 이미 방문한 노드
-                if (visitedNode.contains(nextNode)) {
+                if ((visitedNode & (1 << nextNode)) != 0) {
                     continue;
                 }
-                Set<Integer> nextVisited = new HashSet<>(visitedNode);
                 int nextSheep = sheep;
                 int nextWolf = wolf;    
                 
@@ -46,7 +51,7 @@ class Solution {
                 } else {
                     continue;
                 }
-                nextVisited.add(nextNode);
+                int nextVisited = visitedNode | (1 << nextNode);
                 dfs(info, graph, nextVisited, nextSheep, nextWolf);
             }
         }
