@@ -8,22 +8,30 @@ class Solution {
         
         // 주사위 조합
         // 조합 별 숫자 덧셈 조합
-        getComb(dice, 1, new HashSet<>());
+        getComb(dice);
          
         return answer;
     }
     
     // 주사위 조합 생성 및 최대값 갱신
-    void getComb(int[][] dice, int start, Set<Integer> setA) {
-        if (setA.size() == dice.length / 2) {
-            Set<Integer> setB = new HashSet<>();
-            for (int i = 1; i <= dice.length; i++) {
-                if (!setA.contains(i)) {
-                    setB.add(i);
+    void getComb(int[][] dice) {
+        int n = dice.length;
+        for (int mask = 0; mask < (1 << n); mask++) {
+            if (Integer.bitCount(mask) != n / 2) continue;
+            
+            List<Integer> listA = new ArrayList<>();
+            List<Integer> listB = new ArrayList<>();
+            
+            for (int i = 0; i < n; i++) {
+                if ((mask & (1 << i)) != 0) {
+                    listA.add(i + 1);
+                } else {
+                    listB.add(i + 1);
                 }
             }
-            List<Integer> sumListA = getList(dice, new ArrayList<>(setA), new ArrayList<>(), 0, 0);
-            List<Integer> sumListB = getList(dice, new ArrayList<>(setB), new ArrayList<>(), 0, 0);
+        
+            List<Integer> sumListA = getList(dice, new ArrayList<>(listA), new ArrayList<>(), 0, 0);
+            List<Integer> sumListB = getList(dice, new ArrayList<>(listB), new ArrayList<>(), 0, 0);
             Collections.sort(sumListA);
             Collections.sort(sumListB);
             
@@ -46,17 +54,9 @@ class Solution {
             }
             if (maxWin < win) {
                 maxWin = win;
-                answer = setA.stream().mapToInt(i -> i).toArray();
+                answer = listA.stream().mapToInt(i -> i).toArray();
                 Arrays.sort(answer);
             }
-            return;
-        }
-        
-        for (int i = start; i <= dice.length; i++) {
-            if (setA.contains(i)) continue;
-            setA.add(i);
-            getComb(dice, i + 1, setA);
-            setA.remove(i);
         }
     }
     
